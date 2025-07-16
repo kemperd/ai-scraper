@@ -8,4 +8,5 @@ Steps to install:
 2. conda activate ai-scraper
 3. git clone https://github.com/kemperd/ai-scraper
 4. pip install -r requirements.txt
-5. streamlit run app.py
+5. Edit .env and set your OpenAI and QDrant settings accordingly
+6. streamlit run app.py
