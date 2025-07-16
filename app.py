@@ -241,7 +241,7 @@ def main_screen():
 
                 for index, row in df_local.iterrows():
                     st.header(row['Topic'], divider='grey')
-                    st.markdown('**Is de following information present: ' + row['Question'] + '?**')
+                    st.markdown('**Is the following information present: ' + row['Question'] + '?**')
                     st.write(row['Answer'])
             else:
                 st.error(f'No website data found for {company}, please extract website first')
