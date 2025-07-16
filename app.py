@@ -65,9 +65,7 @@ class Crawler:
 
     def get_linked_urls(self, url, html):
         soup = BeautifulSoup(str(html), 'html.parser')
-        #print('soup: ', soup)
         for link in soup.find_all('a'):
-            #print('found link: ', link)
             path = link.get('href')
             if path and path.startswith('/'):
                 path = urljoin(url, path)
@@ -81,7 +79,6 @@ class Crawler:
         logging.info(f'Crawling: {url}')
         content_type = requests.head(url).headers.get('content-type')
 
-        #print('content_type: ', content_type.split(';')[0].strip() )
         # Only allow HTML and PDF
         if content_type.split(';')[0].strip() in ['text/html', 'application/pdf']:
 
@@ -90,12 +87,9 @@ class Crawler:
             self.pages.append(url)
 
             for url in self.get_linked_urls(url, body):
-                #print('process url: ', url)
                 url_domain = urlparse(url).netloc
                 # Only add URLs in site domain
                 if url is not None:
-                    #print('url_domain: ', url_domain)
-                    #if ( url_domain == self.domain ) and 'mailto' not in url:
                     if ( url.startswith(self.root_url) and 'mailto' not in url ):
                         self.add_url_to_visit(url)   
 
@@ -200,7 +194,6 @@ def run_llm(company, question):
 
 def main_screen():
     st.set_page_config(layout='wide')
-    #st.title('CSO deelnemersanalyse')
 
     tab_extract_site, tab_analyze_site, tab_reporting = st.tabs(['Extract website', 'Run analysis', 'Reporting'])
 
